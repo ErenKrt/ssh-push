@@ -1,5 +1,10 @@
 name: 'SSH Push'
 description: 'Transfer your folders and execute command with SSH used with NodeJS'
+author: 'ErenKrt'
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
+
 inputs:
   HOST:
     description: 'IP Address of remote host'
