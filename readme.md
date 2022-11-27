@@ -2,7 +2,7 @@
 
 [GitHub Action](https://github.com/features/actions) for publish your app via SSH and execute commands.
 
-[![Actions Status](https://github.com/erenkrt/ssh-push/workflows/ssh-push/badge.svg)](https://github.com/erenkrt/ssh-push/actions)
+[![Actions Status](https://github.com/erenkrt/ssh-push/actions/workflows/main.yml/badge.svg)](https://github.com/erenkrt/ssh-push/actions)
 
 ## Variables
 
