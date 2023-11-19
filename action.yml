@@ -1,0 +1,38 @@
+name: 'SSH Push'
+description: 'Transfer your folders and execute command with SSH used with NodeJS'
+author: 'ErenKrt'
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
+
+inputs:
+  Host:
+    description: 'IP Address of remote host'
+    required: true
+  Port:
+    description: 'Port of SSH Protocol'
+    required: false
+    default: 22
+  Username:
+    description: 'Username of SSH user'
+    required: true
+  Password:
+    description: 'Password of user'
+    required: true
+  Source:
+    description: 'Folder/File to be transferred'
+    required: true
+  Destination:
+    description: 'Destination of source archive file'
+    required: true
+  Scripts:
+    description: 'Execute commands after transfer source file'
+    required: false
+
+outputs:
+  status:
+    description: 'Status'
+
+runs:
+  using: 'node18'
+  main: 'dist/index.js'

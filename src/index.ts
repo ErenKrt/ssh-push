@@ -54,6 +54,7 @@ export async function run() {
     host: core.getInput('Host'),
     username: core.getInput('Username'),
     password: core.getInput('Password'),
+    port: Number.parseInt(core.getInput('Port'))
   };
 
   await connectSSH(sshOptions);
@@ -80,5 +81,7 @@ export async function run() {
   }
 
   ssh.dispose();
-  core.setOutput('Done', 'yes');
+  core.setOutput('status', 'Done');
 }
+
+run();

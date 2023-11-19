@@ -69083,6 +69083,7 @@ function run() {
             host: core.getInput('Host'),
             username: core.getInput('Username'),
             password: core.getInput('Password'),
+            port: Number.parseInt(core.getInput('Port'))
         };
         yield connectSSH(sshOptions);
         const SOURCE = core.getInput('Source');
@@ -69102,10 +69103,11 @@ function run() {
             yield executeScripts(SCRIPTS);
         }
         ssh.dispose();
-        core.setOutput('Done', 'yes');
+        core.setOutput('status', 'Done');
     });
 }
 exports.run = run;
+run();
 
 
 /***/ }),
