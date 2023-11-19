@@ -69060,10 +69060,14 @@ function uploadArchive(archive, destination) {
         const tempDir = fs_1.default.mkdtempSync(path_1.default.join(os_1.default.tmpdir(), 'ssh-push'));
         const zipName = path_1.default.join(tempDir, 'test.zip');
         yield fs_1.default.promises.writeFile(zipName, bytes);
+        let lastProgress = 0;
         yield ssh.putFile(zipName, destination, null, {
             step: (uploaded, nb, fsize) => {
-                const percentage = ((uploaded / fsize) * 100).toFixed(0);
-                core.info(`Uploading archive %${percentage}`);
+                const percentage = Number.parseInt(((uploaded / fsize) * 100).toFixed(0));
+                if (percentage % 5 == 0 && lastProgress != percentage) {
+                    core.info(`Uploading archive %${percentage}`);
+                    lastProgress = percentage;
+                }
             },
         });
         core.info(`Archive uploaded...`);
@@ -69083,7 +69087,7 @@ function run() {
             host: core.getInput('host'),
             username: core.getInput('username'),
             password: core.getInput('password'),
-            port: Number.parseInt(core.getInput('port'))
+            port: Number.parseInt(core.getInput('port')),
         };
         yield connectSSH(sshOptions);
         const SOURCE = core.getInput('source');
@@ -69107,7 +69111,7 @@ function run() {
     });
 }
 exports.run = run;
-run();
+//run();
 
 
 /***/ }),

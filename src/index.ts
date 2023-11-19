@@ -33,10 +33,15 @@ async function uploadArchive(archive: JSZip, destination: string) {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ssh-push'));
   const zipName = path.join(tempDir, 'test.zip');
   await fs.promises.writeFile(zipName, bytes);
+
+  let lastProgress=0;
   await ssh.putFile(zipName, destination, null, {
     step: (uploaded: number, nb: number, fsize: number) => {
-      const percentage = ((uploaded / fsize) * 100).toFixed(0);
-      core.info(`Uploading archive %${percentage}`);
+      const percentage = Number.parseInt(((uploaded / fsize) * 100).toFixed(0));
+      if(percentage % 5 == 0 && lastProgress!= percentage){
+        core.info(`Uploading archive %${percentage}`);
+        lastProgress=percentage;
+      }
     },
   });
   core.info(`Archive uploaded...`);

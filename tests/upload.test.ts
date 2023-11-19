@@ -25,8 +25,9 @@ describe("upload tests",()=>{
         })
 
         test("upHost", async()=>{
-            inputs.host="0.0.0.0";
-            inputs.username= "eren";
+            inputs.host="";
+            inputs.port= 22;
+            inputs.username= "";
             inputs.password= "";
             inputs.source = path.join(__dirname,"../testFiles/");
             inputs.destination= "/home/eren/ssh-test/eren.zip";
