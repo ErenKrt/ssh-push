@@ -25,12 +25,12 @@ describe("upload tests",()=>{
         })
 
         test("upHost", async()=>{
-            inputs.Host="0.0.0.0";
-            inputs.Username= "eren";
-            inputs.Password= "";
-            inputs.Source = path.join(__dirname,"../testFiles/");
-            inputs.Destination= "/home/eren/ssh-test/eren.zip";
-            inputs.Scripts= [`sudo -s`, `mv ${inputs.Destination} /home/eren/ssh-test/a.zip`,`cd /home/eren/ssh-test/ && chmod +x *`];
+            inputs.host="0.0.0.0";
+            inputs.username= "eren";
+            inputs.password= "";
+            inputs.source = path.join(__dirname,"../testFiles/");
+            inputs.destination= "/home/eren/ssh-test/eren.zip";
+            inputs.scripts= [`sudo -s`, `mv ${inputs.destination} /home/eren/ssh-test/a.zip`,`cd /home/eren/ssh-test/ && chmod +x *`];
             await main.run();
             expect(true).toBe(true);
         },500000)

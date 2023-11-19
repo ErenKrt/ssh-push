@@ -51,16 +51,16 @@ async function executeScripts(scripts: string[]) {
 
 export async function run() {
   const sshOptions: Config = {
-    host: core.getInput('Host'),
-    username: core.getInput('Username'),
-    password: core.getInput('Password'),
-    port: Number.parseInt(core.getInput('Port'))
+    host: core.getInput('host'),
+    username: core.getInput('username'),
+    password: core.getInput('password'),
+    port: Number.parseInt(core.getInput('port'))
   };
 
   await connectSSH(sshOptions);
 
-  const SOURCE = core.getInput('Source');
-  const DESTINATION = core.getInput('Destination');
+  const SOURCE = core.getInput('source');
+  const DESTINATION = core.getInput('destination');
 
   if (!fs.existsSync(SOURCE)) {
     ssh.dispose();
@@ -75,7 +75,7 @@ export async function run() {
   const archive = createZip(SOURCE, files);
   await uploadArchive(archive, DESTINATION);
 
-  const SCRIPTS: string[] = core.getMultilineInput('Scripts');
+  const SCRIPTS: string[] = core.getMultilineInput('scripts');
   if (SCRIPTS.length > 0) {
     await executeScripts(SCRIPTS);
   }

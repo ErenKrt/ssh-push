@@ -69080,14 +69080,14 @@ function executeScripts(scripts) {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const sshOptions = {
-            host: core.getInput('Host'),
-            username: core.getInput('Username'),
-            password: core.getInput('Password'),
-            port: Number.parseInt(core.getInput('Port'))
+            host: core.getInput('host'),
+            username: core.getInput('username'),
+            password: core.getInput('password'),
+            port: Number.parseInt(core.getInput('port'))
         };
         yield connectSSH(sshOptions);
-        const SOURCE = core.getInput('Source');
-        const DESTINATION = core.getInput('Destination');
+        const SOURCE = core.getInput('source');
+        const DESTINATION = core.getInput('destination');
         if (!fs_1.default.existsSync(SOURCE)) {
             ssh.dispose();
             core.setFailed(`No source as ${SOURCE}`);
@@ -69098,7 +69098,7 @@ function run() {
         });
         const archive = createZip(SOURCE, files);
         yield uploadArchive(archive, DESTINATION);
-        const SCRIPTS = core.getMultilineInput('Scripts');
+        const SCRIPTS = core.getMultilineInput('scripts');
         if (SCRIPTS.length > 0) {
             yield executeScripts(SCRIPTS);
         }

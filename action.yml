@@ -6,26 +6,26 @@ branding:
   color: 'gray-dark'
 
 inputs:
-  Host:
+  host:
     description: 'IP Address of remote host'
     required: true
-  Port:
+  port:
     description: 'Port of SSH Protocol'
     required: false
     default: 22
-  Username:
+  username:
     description: 'Username of SSH user'
     required: true
-  Password:
+  password:
     description: 'Password of user'
     required: true
-  Source:
+  source:
     description: 'Folder/File to be transferred'
     required: true
-  Destination:
+  destination:
     description: 'Destination of source archive file'
     required: true
-  Scripts:
+  scripts:
     description: 'Execute commands after transfer source file'
     required: false
 
