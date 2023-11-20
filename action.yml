@@ -6,39 +6,33 @@ branding:
   color: 'gray-dark'
 
 inputs:
-  HOST:
+  host:
     description: 'IP Address of remote host'
     required: true
-  PORT:
+  port:
     description: 'Port of SSH Protocol'
-    required: true
+    required: false
     default: 22
-  USERNAME:
+  username:
     description: 'Username of SSH user'
     required: true
-  PRIVATE_KEY:
-    description: 'SSH Private Key'
+  password:
+    description: 'Password of user'
     required: true
-  SOURCE:
-    description: 'Folder to be transferred'
-    required: false
-  EXCLUDE:
-    description: 'Exlude paths or file in source folder with glob features'
-    required: false
-  ZIPNAME:
-    description: 'Using zip for stability at transfer, file name of zip'
-    required: false
-    default: 'build.zip'
-  OUTDIR:
-    description: 'Remote host path to copy zip'
-    required: false
-  SCRIPTS:
+  source:
+    description: 'Folder/File to be transferred'
+    required: true
+  destination:
+    description: 'Destination of source archive file'
+    required: true
+  scripts:
     description: 'Execute commands after transfer source file'
     required: false
 
 outputs:
   status:
     description: 'Status'
+
 runs:
   using: 'node16'
   main: 'dist/index.js'
